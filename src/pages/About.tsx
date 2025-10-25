@@ -204,8 +204,8 @@ export default function AboutMe() {
               mb: 3,
             }}
           >
-            <strong>Traveling</strong> has always been a major part of my life. I’ve visited over <strong>65 countries</strong>
-            so far and had the chance to live in several of them. In 2016, I took a <strong>sabbatical</strong> from my role in
+            <strong>Traveling</strong> has always been a major part of my life. I’ve visited over <strong>65 countries</strong> so 
+            far and had the chance to live in several of them. In 2016, I took a <strong>sabbatical</strong> from my role in
             the Judiciary of Buenos Aires Province to spend a year in Dublin, Ireland—improving my English while working in an Irish bar.
           </Typography>
 

@@ -1,7 +1,7 @@
 import { useRef, useState, useLayoutEffect, useCallback } from "react";
-import { Box, Typography, Paper } from "@mui/material";
+import { Box, Typography, Paper, Button } from "@mui/material";
 import { motion } from "framer-motion";
-import { RadioButtonCheckedRounded } from "@mui/icons-material";
+import { RadioButtonCheckedRounded, DownloadRounded } from "@mui/icons-material";
 
 interface ExperienceItem {
   year: string;
@@ -13,10 +13,11 @@ const experiences: ExperienceItem[] = [
   { year: "2011", title: "Mediator of Employment-Related Cases – Judicial System", description: "I started working in the Judiciary from an entry-level position and progressed to working as a mediator in employment-related cases over an eight-year period." },
   { year: "2013", title: "Law Degree", description: "I earned my Law degree from the National University of La Matanza, Buenos Aires, Argentina." },
   { year: "2015", title: "Master's Degree in Administrative Law", description: "I completed my two-year Master's degree in Administrative Law at Austral University, Buenos Aires, Argentina." },
-  { year: "2017", title: "Art Curation Studies", description: "I began my studies in Art Curation at the National University of the Arts, Buenos Aires, Argentina, although the program remains unfinished." },
+  { year: "2018", title: "Art Curation Studies", description: "I began my studies in Art Curation at the National University of the Arts, Buenos Aires, Argentina, although the program remains unfinished." },
   { year: "2022", title: "Fullstack .NET Bootcamp", description: "I graduated from the Fullstack .NET Bootcamp during Fall 2022, offered by </Salt> in Stockholm, Sweden." },
   { year: "2023", title: "Software Developer", description: "I started my first job as a software developer at Byggdagboken in Ljusdal, Sweden." },
-  { year: "Future", title: "Software Developer & Learner", description: "Continuously learning and experimenting with cutting-edge tools, frameworks, and architectures." }];
+  { year: "Future", title: "Software Developer & Learner", description: "Continuously learning and experimenting with cutting-edge tools, frameworks, and architectures." }
+];
 
 export default function Experience() {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -31,14 +32,12 @@ export default function Experience() {
     const height = container.offsetHeight;
 
     const newPoints: { left: number; top: number }[] = [];
-
     for (let i = 0; i < experiences.length; i++) {
       const t = i / (experiences.length - 1);
       const left = t * width;
       const top = height * (0.5 + 0.4 * Math.sin(t * Math.PI * 1.5));
       newPoints.push({ left, top });
     }
-
     setPoints(newPoints);
   }, []);
 
@@ -60,6 +59,7 @@ export default function Experience() {
         overflow: "hidden",
         py: 25,
         px: 25,
+        position: "relative",
       }}
     >
       <motion.div
@@ -75,18 +75,17 @@ export default function Experience() {
             fontSize: { xs: '3rem', sm: '4rem', md: '6rem' },
             color: '#245F73',
             textShadow: `
-      -1px -1px 0 #87a6b1ff,
-      1px -1px 0 #87a6b1ff,
-      -1px 1px 0 #87a6b1ff,
-      1px 1px 0 #87a6b1ff
-    `,
+              -1px -1px 0 #87a6b1ff,
+              1px -1px 0 #87a6b1ff,
+              -1px 1px 0 #87a6b1ff,
+              1px 1px 0 #87a6b1ff
+            `,
             lineHeight: 1.1,
             mb: 3,
           }}
         >
           Experience
         </Typography>
-
       </motion.div>
 
       <div
@@ -157,17 +156,10 @@ export default function Experience() {
                     <Typography variant="h4" sx={{ fontWeight: 700, mb: 0.5 }}>
                       {experiences[idx].year}
                     </Typography>
-
                     <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 1 }}>
                       {experiences[idx].title}
                     </Typography>
-
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        mt: 1,
-                      }}
-                    >
+                    <Typography variant="body2" sx={{ mt: 1 }}>
                       {experiences[idx].description}
                     </Typography>
                   </Paper>
@@ -177,6 +169,28 @@ export default function Experience() {
           );
         })}
       </div>
+
+      <Button
+        variant="contained"
+        color="primary"
+        startIcon={<DownloadRounded />}
+        href="src/assets/CV - Guido Bertaina.pdf"
+        download
+        sx={{
+          position: "absolute",
+          bottom: 150,
+          right: 100,
+          fontWeight: 700,
+          borderRadius: 2,
+          textTransform: "none",
+          px: 4,
+          py: 2,
+          fontSize: "1.2rem",
+          minWidth: 180,
+        }}
+      >
+        Download CV
+      </Button>
     </Box>
   );
 }
