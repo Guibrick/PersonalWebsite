@@ -19,7 +19,15 @@ export default function Navbar() {
 
   return (
     <ThemeProvider theme={theme}>
-      <AppBar position="static" sx={{ bgcolor: '#BBBDBC' }}>
+      <AppBar position="fixed"
+        sx={{
+          top: 0,
+          left: 0,
+          width: '100%',
+          background: 'linear-gradient(to bottom, #30515cff, rgba(17,17,17,0))',
+          boxShadow: 'none',
+          zIndex: 1200,
+        }}>
         <Toolbar>
           <Button color="inherit" component={Link} to="/">Home</Button>
           <Button color="inherit" component={Link} to="/about">About</Button>
