@@ -37,7 +37,7 @@ export default function Footer() {
       <IconButton
         aria-label="LinkedIn"
         component="a"
-        href="https://www.linkedin.com/in/tu-usuario"
+        href="https://www.linkedin.com/in/guido-bertaina/"
         target="_blank"
         sx={{ color: '#F2F0EF' }}
       >
