@@ -2,6 +2,7 @@ import { useRef, useState, useLayoutEffect, useCallback } from "react";
 import { Box, Typography, Paper, Button } from "@mui/material";
 import { motion } from "framer-motion";
 import { RadioButtonCheckedRounded, DownloadRounded } from "@mui/icons-material";
+import { useLanguage } from "../contexts/LanguageContext";
 
 interface ExperienceItem {
   year: string;
@@ -9,25 +10,25 @@ interface ExperienceItem {
   description: string;
 }
 
-const experiences: ExperienceItem[] = [
-  { year: "2011", title: "Mediator of Employment-Related Cases – Judicial System", description: "I started working in the Judiciary from an entry-level position and progressed to working as a mediator in employment-related cases over an eight-year period." },
-  { year: "2013", title: "Law Degree", description: "I earned my Law degree from the National University of La Matanza, Buenos Aires, Argentina." },
-  { year: "2015", title: "Master's Degree in Administrative Law", description: "I completed my two-year Master's degree in Administrative Law at Austral University, Buenos Aires, Argentina." },
-  { year: "2018", title: "Art Curation Studies", description: "I began my studies in Art Curation at the National University of the Arts, Buenos Aires, Argentina, although the program remains unfinished." },
-  { year: "2022", title: "Fullstack .NET Bootcamp", description: "I graduated from the Fullstack .NET Bootcamp during Fall 2022, offered by </Salt> in Stockholm, Sweden." },
-  { year: "2023", title: "Software Developer", description: "I started my first job as a software developer at Byggdagboken in Ljusdal, Sweden." },
-  { year: "Future", title: "Software Developer & Learner", description: "Continuously learning and experimenting with cutting-edge tools, frameworks, and architectures." }
-];
-
 export default function Experience() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [points, setPoints] = useState<{ left: number; top: number }[]>([]);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
+  const experiences: ExperienceItem[] = [
+    { year: "2011", title: t("exp_2011_title"), description: t("exp_2011_desc") },
+    { year: "2013", title: t("exp_2013_title"), description: t("exp_2013_desc") },
+    { year: "2015", title: t("exp_2015_title"), description: t("exp_2015_desc") },
+    { year: "2018", title: t("exp_2018_title"), description: t("exp_2018_desc") },
+    { year: "2022", title: t("exp_2022_title"), description: t("exp_2022_desc") },
+    { year: "2023", title: t("exp_2023_title"), description: t("exp_2023_desc") },
+    { year: t("exp_future_year"), title: t("exp_future_title"), description: t("exp_future_desc") },
+  ];
+
   const computePoints = useCallback(() => {
     const container = containerRef.current;
     if (!container) return;
-
     const width = container.offsetWidth;
     const height = container.offsetHeight;
 
@@ -39,7 +40,7 @@ export default function Experience() {
       newPoints.push({ left, top });
     }
     setPoints(newPoints);
-  }, []);
+  }, [experiences.length]);
 
   useLayoutEffect(() => {
     computePoints();
@@ -55,7 +56,7 @@ export default function Experience() {
         flexDirection: "column",
         alignItems: "flex-start",
         justifyContent: "flex-start",
-        background: 'linear-gradient(135deg, #c99073ff 30%, #50899cff 100%, #c99073ff 40%)',
+        background: "linear-gradient(135deg, #c99073ff 30%, #50899cff 100%, #c99073ff 40%)",
         overflow: "hidden",
         py: 25,
         px: 25,
@@ -70,21 +71,20 @@ export default function Experience() {
         <Typography
           variant="h2"
           sx={{
-            fontFamily: 'Montserrat, sans-serif',
+            fontFamily: "Montserrat, sans-serif",
             fontWeight: 700,
-            fontSize: { xs: '3rem', sm: '4rem', md: '6rem' },
-            color: '#245F73',
+            fontSize: { xs: "3rem", sm: "4rem", md: "6rem" },
+            color: "#245F73",
             textShadow: `
               -1px -1px 0 #87a6b1ff,
               1px -1px 0 #87a6b1ff,
               -1px 1px 0 #87a6b1ff,
               1px 1px 0 #87a6b1ff
             `,
-            lineHeight: 1.1,
             mb: 3,
           }}
         >
-          Experience
+          {t("experience_title")}
         </Typography>
       </motion.div>
 
@@ -93,13 +93,12 @@ export default function Experience() {
         style={{
           position: "relative",
           width: "100%",
-          height: 400,
+          height: "40vh",
           margin: "0 auto",
         }}
       >
         {points.map((p, idx) => {
           const isAbove = idx % 2 === 0;
-
           return (
             <div
               key={idx}
@@ -114,8 +113,8 @@ export default function Experience() {
               <motion.div
                 onMouseEnter={() => setHoveredIndex(idx)}
                 onMouseLeave={() => setHoveredIndex(null)}
-                style={{ cursor: "pointer" }}
                 whileHover={{ scale: 1.2 }}
+                aria-label={experiences[idx].title}
               >
                 <RadioButtonCheckedRounded
                   sx={{
@@ -130,7 +129,6 @@ export default function Experience() {
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0 }}
                   transition={{ duration: 0.25 }}
                   style={{
                     position: "absolute",
@@ -174,7 +172,7 @@ export default function Experience() {
         variant="contained"
         color="primary"
         startIcon={<DownloadRounded />}
-        href="src/assets/CV - Guido Bertaina.pdf"
+        href="/CV - Guido Bertaina.pdf"
         download
         sx={{
           position: "absolute",
@@ -189,7 +187,7 @@ export default function Experience() {
           minWidth: 180,
         }}
       >
-        Download CV
+        {t("download_cv")}
       </Button>
     </Box>
   );

@@ -1,30 +1,34 @@
-import { Container, Typography, Box } from '@mui/material';
-import { motion } from 'framer-motion';
-import MyPhoto from '../assets/models-LR-4-retouched-IMG_0025.jpg';
+import { Container, Typography, Box } from "@mui/material";
+import { motion } from "framer-motion";
+import { useLanguage } from "../contexts/LanguageContext";
+import MyPhoto from "../assets/models-LR-4-retouched-IMG_0025.jpg";
 
 export default function Home() {
+    const { t } = useLanguage();
+
     return (
         <Box
             sx={{
-                width: '100vw',
-                height: '100vh',
-                background: 'linear-gradient(135deg, #c99073ff 0%, #50899cff 90%, #c99073ff 100%)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                overflow: 'hidden',
+                width: "100vw",
+                height: "100vh",
+                background:
+                    "linear-gradient(135deg, #c99073ff 0%, #50899cff 90%, #c99073ff 100%)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                overflow: "hidden",
             }}
         >
             <Container
                 sx={{
-                    width: '100vw',
-                    height: '80vh',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
+                    width: "100vw",
+                    height: "80vh",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
                     gap: 6,
                     px: 4,
-                    boxSizing: 'border-box',
+                    boxSizing: "border-box",
                 }}
             >
                 <motion.div
@@ -33,31 +37,37 @@ export default function Home() {
                     transition={{ duration: 0.8 }}
                     style={{ flex: 1, zIndex: 2 }}
                 >
-                    <Typography variant="h1"
+                    <Typography
+                        variant="h1"
                         sx={{
-                            fontFamily: 'Montserrat, sans-serif',
+                            fontFamily: "Montserrat, sans-serif",
                             fontWeight: 900,
-                            fontSize: { xs: '3rem', sm: '4rem', md: '6rem' },
-                            color: 'primary.main',
+                            fontSize: { xs: "3rem", sm: "4rem", md: "6rem" },
+                            color: "primary.main",
                             lineHeight: 1.1,
-                            mb: 3
-                        }}>
+                            mb: 3,
+                        }}
+                    >
                         Guido Bertaina
                     </Typography>
-                    <Typography variant="h5" sx={{ color: 'text.secondary', mb: 5, lineHeight: 1.5 }}>
-                        Fullstack Developer & Web Enthusiast,<br />
-                        with roots in Law<br />
-                        and a keen interest in Art.
+
+                    <Typography
+                        variant="h5"
+                        sx={{ color: "text.secondary", mb: 5, lineHeight: 1.5 }}
+                    >
+                        {t("home_description_line1")} <br />
+                        {t("home_description_line2")} <br />
+                        {t("home_description_line3")}
                     </Typography>
                 </motion.div>
 
                 <motion.div
                     style={{
-                        width: '35vw',
-                        maxWidth: '500px',
-                        position: 'relative',
-                        top: '0px',
-                        left: '100px',
+                        width: "35vw",
+                        maxWidth: "500px",
+                        position: "relative",
+                        top: "0px",
+                        left: "100px",
                     }}
                     initial={{ opacity: 0, x: 80, scale: 0.9 }}
                     animate={{ opacity: 1, x: 0, scale: 1 }}
@@ -66,13 +76,13 @@ export default function Home() {
                 >
                     <motion.img
                         src={MyPhoto}
-                        alt="Guido"
+                        alt={t("home_photo_alt")}
                         style={{
-                            width: '100%',
-                            height: '100%',
-                            objectFit: 'cover',
-                            clipPath: 'polygon(0 0, 100% 10%, 100% 90%, 0 100%)',
-                            filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.2))',
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                            clipPath: "polygon(0 0, 100% 10%, 100% 90%, 0 100%)",
+                            filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.2))",
                         }}
                         animate={{
                             y: [0, -10, 0],
@@ -80,8 +90,8 @@ export default function Home() {
                         transition={{
                             duration: 4,
                             repeat: Infinity,
-                            repeatType: 'mirror',
-                            ease: 'easeInOut',
+                            repeatType: "mirror",
+                            ease: "easeInOut",
                         }}
                     />
                 </motion.div>

@@ -23,7 +23,7 @@ export default function Footer() {
       }}
     >
       <Typography variant="body2" sx={{ color: '#F2F0EF' }}>
-        © {new Date().getFullYear()} Guido
+        © {new Date().getFullYear()} Guido Bertaina
       </Typography>
       <IconButton
         aria-label="GitHub"

@@ -1,44 +1,42 @@
-import { AppBar, Toolbar, Button, IconButton } from '@mui/material';
-import { Link } from 'react-router-dom';
-import { Brightness4, Brightness7 } from '@mui/icons-material';
-import { ThemeProvider, createTheme } from '@mui/material';
-import { useState } from 'react';
+import { AppBar, Toolbar, Button, Select, MenuItem, Box } from "@mui/material";
+import { Link } from "react-router-dom";
+import { useLanguage } from "../contexts/LanguageContext";
 
 export default function Navbar() {
-  const [mode, setMode] = useState<'light' | 'dark'>('light');
-
-  const theme = createTheme({
-    palette: {
-      mode: mode,
-    },
-  });
-
-  const toggleMode = () => {
-    setMode((prev) => (prev === 'light' ? 'dark' : 'light'));
-  };
+  const { language, setLanguage, t } = useLanguage();
 
   return (
-    <ThemeProvider theme={theme}>
-      <AppBar position="fixed"
-        sx={{
-          top: 0,
-          left: 0,
-          width: '100%',
-          background: 'linear-gradient(to bottom, #30515cff, rgba(17,17,17,0))',
-          boxShadow: 'none',
-          zIndex: 1200,
-        }}>
-        <Toolbar>
-          <Button color="inherit" component={Link} to="/">Home</Button>
-          <Button color="inherit" component={Link} to="/about">About</Button>
-          <Button color="inherit" component={Link} to="/experience">Experience</Button>
-          <Button color="inherit" component={Link} to="/projects">Projects</Button>
-          <Button color="inherit" component={Link} to="/contact">Contact</Button>
-          <IconButton color="inherit" onClick={toggleMode} sx={{ marginLeft: 'auto' }}>
-            {mode === 'light' ? <Brightness4 /> : <Brightness7 />}
-          </IconButton>
-        </Toolbar>
-      </AppBar>
-    </ThemeProvider>
+    <AppBar
+      position="fixed"
+      sx={{
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "20%",
+        background: "linear-gradient(to bottom, #30515cff, rgba(17,17,17,0))",
+        boxShadow: "none",
+        zIndex: 1200,
+      }}
+    >
+      <Toolbar sx={{ justifyContent: "space-between" }}>
+        <Box>
+          <Button color="inherit" component={Link} to="/">{t("home")}</Button>
+          <Button color="inherit" component={Link} to="/about">{t("about")}</Button>
+          <Button color="inherit" component={Link} to="/experience">{t("experience")}</Button>
+          <Button color="inherit" component={Link} to="/contact">{t("contact")}</Button>
+        </Box>
+
+        <Select
+          value={language}
+          onChange={(e) => setLanguage(e.target.value)}
+          sx={{ color: "white", borderColor: "white" }}
+        >
+          <MenuItem value="en">EN</MenuItem>
+          <MenuItem value="es">ES</MenuItem>
+          <MenuItem value="sv">SV</MenuItem>
+          <MenuItem value="it">IT</MenuItem>
+        </Select>
+      </Toolbar>
+    </AppBar>
   );
 }

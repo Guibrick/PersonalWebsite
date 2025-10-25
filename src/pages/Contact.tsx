@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Container, Typography, TextField, Button, Box, Snackbar, Alert } from '@mui/material';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface FormData {
   name: string;
@@ -8,6 +9,8 @@ interface FormData {
 }
 
 export default function Contact() {
+  const { t } = useLanguage();
+
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -37,14 +40,14 @@ export default function Contact() {
       const data = await res.json();
 
       if (res.ok) {
-        setSnackbar({ open: true, severity: 'success', message: 'Message sent successfully!' });
+        setSnackbar({ open: true, severity: 'success', message: t('msg_sent') });
         setFormData({ name: '', email: '', message: '' });
       } else {
-        setSnackbar({ open: true, severity: 'error', message: `Failed to send message: ${data.error}` });
+        setSnackbar({ open: true, severity: 'error', message: `${t('msg_failed')}: ${data.error}` });
       }
     } catch (err) {
       console.error(err);
-      setSnackbar({ open: true, severity: 'error', message: 'Failed to send message.' });
+      setSnackbar({ open: true, severity: 'error', message: t('msg_failed') });
     }
   };
 
@@ -86,7 +89,7 @@ export default function Contact() {
             `,
           }}
         >
-          Contact
+          {t('contact_title')}
         </Typography>
 
         <Box
@@ -99,7 +102,7 @@ export default function Contact() {
           }}
         >
           <TextField
-            label="Name"
+            label={t('name_label')}
             name="name"
             value={formData.name}
             onChange={handleChange}
@@ -107,7 +110,7 @@ export default function Contact() {
             fullWidth
           />
           <TextField
-            label="Email"
+            label={t('email_label')}
             name="email"
             value={formData.email}
             onChange={handleChange}
@@ -115,7 +118,7 @@ export default function Contact() {
             fullWidth
           />
           <TextField
-            label="Message"
+            label={t('message_label')}
             name="message"
             value={formData.message}
             onChange={handleChange}
@@ -134,7 +137,7 @@ export default function Contact() {
               mt: 2,
             }}
           >
-            Send
+            {t('send_button')}
           </Button>
         </Box>
 
