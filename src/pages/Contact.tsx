@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { Container, Typography, TextField, Button, Box } from '@mui/material';
-import emailjs from '@emailjs/browser';
+import { Container, Typography, TextField, Button, Box, Snackbar, Alert } from '@mui/material';
 
 interface FormData {
   name: string;
@@ -15,32 +14,145 @@ export default function Contact() {
     message: '',
   });
 
+  const [snackbar, setSnackbar] = useState<{ open: boolean; severity: 'success' | 'error'; message: string }>({
+    open: false,
+    severity: 'success',
+    message: '',
+  });
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    emailjs.send(
-      'YOUR_SERVICE_ID',
-      'YOUR_TEMPLATE_ID',
-      formData,
-      'YOUR_PUBLIC_KEY'
-    ).then(
-      () => alert('Message sent!'),
-      () => alert('Failed to send message.')
-    );
+
+    try {
+      const res = await fetch('http://localhost:5000/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setSnackbar({ open: true, severity: 'success', message: 'Message sent successfully!' });
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        setSnackbar({ open: true, severity: 'error', message: `Failed to send message: ${data.error}` });
+      }
+    } catch (err) {
+      console.error(err);
+      setSnackbar({ open: true, severity: 'error', message: 'Failed to send message.' });
+    }
   };
 
   return (
-    <Container sx={{ py: 8 }}>
-      <Typography variant="h4" gutterBottom>Contact</Typography>
-      <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 2, maxWidth: 500 }}>
-        <TextField label="Name" name="name" value={formData.name} onChange={handleChange} required />
-        <TextField label="Email" name="email" value={formData.email} onChange={handleChange} required />
-        <TextField label="Message" name="message" value={formData.message} onChange={handleChange} multiline rows={4} required />
-        <Button type="submit" variant="contained">Send</Button>
-      </Box>
-    </Container>
+    <Box
+      sx={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'linear-gradient(200deg, #c99073ff 70%, #50899cff 90%)',
+        py: 10,
+        px: { xs: 4, sm: 10 },
+      }}
+    >
+      <Container
+        sx={{
+          maxWidth: 600,
+          backgroundColor: 'rgba(36, 95, 115, 0.25)',
+          borderRadius: 3,
+          boxShadow: '0 10px 30px rgba(0,0,0,0.15)',
+          p: 6,
+        }}
+      >
+        <Typography
+          variant="h2"
+          sx={{
+            fontFamily: 'Montserrat, sans-serif',
+            fontWeight: 700,
+            fontSize: { xs: '2.5rem', sm: '3rem', md: '4rem' },
+            color: '#245F73',
+            textAlign: 'center',
+            mb: 4,
+            textShadow: `
+              -1px -1px 0 #87a6b1ff,
+              1px -1px 0 #87a6b1ff,
+              -1px 1px 0 #87a6b1ff,
+              1px 1px 0 #87a6b1ff
+            `,
+          }}
+        >
+          Contact
+        </Typography>
+
+        <Box
+          component="form"
+          onSubmit={handleSubmit}
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 3,
+          }}
+        >
+          <TextField
+            label="Name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+            fullWidth
+          />
+          <TextField
+            label="Email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            fullWidth
+          />
+          <TextField
+            label="Message"
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            multiline
+            rows={5}
+            required
+            fullWidth
+          />
+          <Button
+            type="submit"
+            variant="contained"
+            sx={{
+              fontWeight: 700,
+              fontSize: '1.1rem',
+              py: 1.5,
+              mt: 2,
+            }}
+          >
+            Send
+          </Button>
+        </Box>
+
+        <Snackbar
+          open={snackbar.open}
+          autoHideDuration={4000}
+          onClose={() => setSnackbar({ ...snackbar, open: false })}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        >
+          <Alert
+            onClose={() => setSnackbar({ ...snackbar, open: false })}
+            severity={snackbar.severity}
+            sx={{ width: '100%' }}
+          >
+            {snackbar.message}
+          </Alert>
+        </Snackbar>
+      </Container>
+    </Box>
   );
 }

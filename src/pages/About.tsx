@@ -190,8 +190,8 @@ export default function AboutMe() {
             }}
           >
             My name is <strong>Guido Bertaina</strong>, I am 36 years old and originally from Argentina. Growing up,
-            I cultivated a love for learning and diverse experiences, which led me to pursue a <strong>Law degree</strong>
-            after high school, while also dedicating time to passions such as <em>rugby, playing the cello</em>, and exploring cultural activities.
+            I cultivated a love for learning and diverse experiences, which led me to pursue a <strong>Law degree</strong> after
+             high school, while also dedicating time to passions such as rugby, playing the cello, and exploring cultural activities.
           </Typography>
 
           <Typography
@@ -205,7 +205,7 @@ export default function AboutMe() {
             }}
           >
             <strong>Traveling</strong> has always been a major part of my life. I’ve visited over <strong>65 countries</strong> so 
-            far and had the chance to live in several of them. In 2016, I took a <strong>sabbatical</strong> from my role in
+            far and had the chance to live in some of them. In 2016, I took a <strong>sabbatical</strong> from my role in
             the Judiciary of Buenos Aires Province to spend a year in Dublin, Ireland—improving my English while working in an Irish bar.
           </Typography>
 
