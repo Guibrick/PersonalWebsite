@@ -2,14 +2,14 @@ import { Box, Typography, useMediaQuery } from "@mui/material";
 import { motion } from "framer-motion";
 import { useLanguage } from "../contexts/LanguageContext";
 
-const photos = [
-  "src/assets/brazil.jpg",
-  "src/assets/greece.jpg",
-  "src/assets/iceland.jpg",
-  "src/assets/indonesia.jpg",
-  "src/assets/israel.jpg",
-  "src/assets/italy.jpg",
-];
+import brazil from "../assets/brazil.jpg";
+import greece from "../assets/greece.jpg";
+import iceland from "../assets/iceland.jpg";
+import indonesia from "../assets/indonesia.jpg";
+import israel from "../assets/israel.jpg";
+import italy from "../assets/italy.jpg";
+
+const photos = [brazil, greece, iceland, indonesia, israel, italy];
 
 export default function AboutMe() {
   const isSmall = useMediaQuery("(max-width:900px)");
