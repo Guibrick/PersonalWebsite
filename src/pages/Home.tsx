@@ -1,7 +1,7 @@
 import { Container, Typography, Box } from "@mui/material";
 import { motion } from "framer-motion";
 import { useLanguage } from "../contexts/LanguageContext";
-import MyPhoto from "../assets/models-LR-4-retouched-IMG_0025.jpg";
+import MyPhoto from "../assets/personalimage.jpg";
 
 export default function Home() {
     const { t } = useLanguage();
