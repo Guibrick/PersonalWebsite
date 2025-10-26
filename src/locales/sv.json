@@ -38,5 +38,8 @@
     "message_label": "Meddelande",
     "send_button": "Skicka",
     "msg_sent": "Meddelandet skickades!",
-    "msg_failed": "Misslyckades med att skicka meddelandet"
+    "msg_failed": "Misslyckades med att skicka meddelandet",
+    "cookie_text": "Den här webbplatsen använder cookies för analys och för att förbättra användarupplevelsen.",
+    "cookie_accept": "Acceptera",
+    "cookie_decline": "Avvisa"
 }

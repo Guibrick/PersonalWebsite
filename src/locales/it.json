@@ -38,5 +38,8 @@
     "message_label": "Messaggio",
     "send_button": "Invia",
     "msg_sent": "Messaggio inviato con successo!",
-    "msg_failed": "Invio del messaggio fallito"
+    "msg_failed": "Invio del messaggio fallito",
+    "cookie_text": "Questo sito utilizza i cookie per l'analisi e per migliorare l'esperienza dell'utente.",
+    "cookie_accept": "Accetta",
+    "cookie_decline": "Rifiuta"
 }
