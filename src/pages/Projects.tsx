@@ -1,4 +1,4 @@
-import { Container, Typography, Grid, Card, CardContent } from '@mui/material';
+import { Container, Typography, Card, CardContent, Box } from '@mui/material';
 
 export default function Projects() {
   return (
@@ -6,24 +6,30 @@ export default function Projects() {
       <Typography variant="h4" gutterBottom>
         Projects
       </Typography>
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={6}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: 2,
+        }}
+      >
+        <Box sx={{ flex: { xs: '100%', md: '48%' } }}>
           <Card>
             <CardContent>
               <Typography variant="h6">Project 1</Typography>
               <Typography>React portfolio website</Typography>
             </CardContent>
           </Card>
-        </Grid>
-        <Grid item xs={12} md={6}>
+        </Box>
+        <Box sx={{ flex: { xs: '100%', md: '48%' } }}>
           <Card>
             <CardContent>
               <Typography variant="h6">Project 2</Typography>
               <Typography>Node.js API for tasks</Typography>
             </CardContent>
           </Card>
-        </Grid>
-      </Grid>
+        </Box>
+      </Box>
     </Container>
   );
 }
