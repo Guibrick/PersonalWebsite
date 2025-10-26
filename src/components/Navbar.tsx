@@ -12,13 +12,13 @@ export default function Navbar() {
         top: 0,
         left: 0,
         width: "100%",
-        height: "20%",
-        background: "linear-gradient(to bottom, #30515cff, rgba(17,17,17,0))",
+        height: "10%",
+        background: "linear-gradient(to bottom, #384959, rgba(17,17,17,0))",
         boxShadow: "none",
         zIndex: 1200,
       }}
     >
-      <Toolbar sx={{ justifyContent: "space-between" }}>
+      <Toolbar sx={{ justifyContent: "space-between", pt: 2 }}>
         <Box>
           <Button color="inherit" component={Link} to="/">{t("home")}</Button>
           <Button color="inherit" component={Link} to="/about">{t("about")}</Button>

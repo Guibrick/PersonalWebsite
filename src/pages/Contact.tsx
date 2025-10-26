@@ -56,13 +56,28 @@ export default function Contact() {
       sx={{
         minHeight: '100vh',
         display: 'flex',
+        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        background: 'linear-gradient(200deg, #c99073ff 70%, #50899cff 90%)',
         py: 10,
         px: { xs: 4, sm: 10 },
       }}
     >
+      <Typography
+        variant="h2"
+        sx={{
+          fontFamily: "Montserrat, sans-serif",
+          fontWeight: 700,
+          fontSize: { xs: "3rem", sm: "4rem", md: "6rem" },
+          color: "primary.main",
+          mb: 5,
+          textAlign: 'center',
+
+        }}
+      >
+        {t('contact_title')}
+      </Typography>
+
       <Container
         sx={{
           maxWidth: 600,
@@ -72,26 +87,6 @@ export default function Contact() {
           p: 6,
         }}
       >
-        <Typography
-          variant="h2"
-          sx={{
-            fontFamily: 'Montserrat, sans-serif',
-            fontWeight: 700,
-            fontSize: { xs: '2.5rem', sm: '3rem', md: '4rem' },
-            color: '#245F73',
-            textAlign: 'center',
-            mb: 4,
-            textShadow: `
-              -1px -1px 0 #87a6b1ff,
-              1px -1px 0 #87a6b1ff,
-              -1px 1px 0 #87a6b1ff,
-              1px 1px 0 #87a6b1ff
-            `,
-          }}
-        >
-          {t('contact_title')}
-        </Typography>
-
         <Box
           component="form"
           onSubmit={handleSubmit}

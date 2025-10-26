@@ -11,8 +11,6 @@ export default function Home() {
             sx={{
                 width: "100vw",
                 height: "100vh",
-                background:
-                    "linear-gradient(135deg, #c99073ff 0%, #50899cff 90%, #c99073ff 100%)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -42,7 +40,7 @@ export default function Home() {
                         sx={{
                             fontFamily: "Montserrat, sans-serif",
                             fontWeight: 900,
-                            fontSize: { xs: "3rem", sm: "4rem", md: "6rem" },
+                            fontSize: { xs: "3rem", sm: "4rem", md: "7rem" },
                             color: "primary.main",
                             lineHeight: 1.1,
                             mb: 3,
@@ -53,7 +51,7 @@ export default function Home() {
 
                     <Typography
                         variant="h5"
-                        sx={{ color: "text.secondary", mb: 5, lineHeight: 1.5 }}
+                        sx={{ color: "secondary.main", mb: 5, pl: 1, lineHeight: 1.5 }}
                     >
                         {t("home_description_line1")} <br />
                         {t("home_description_line2")} <br />

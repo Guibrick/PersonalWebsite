@@ -22,7 +22,6 @@ export default function AboutMe() {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        background: "linear-gradient(135deg, #50899cff 20%, #c99073ff 80%)",
         color: "#245F73",
         px: { xs: 4, sm: 8, md: 10 },
         overflow: "hidden",
@@ -100,13 +99,7 @@ export default function AboutMe() {
               fontFamily: "Montserrat, sans-serif",
               fontWeight: 700,
               fontSize: { xs: "3rem", sm: "4rem", md: "5rem" },
-              color: "#245F73",
-              textShadow: `
-                -1px -1px 0 #87a6b1ff,
-                1px -1px 0 #87a6b1ff,
-                -1px 1px 0 #87a6b1ff,
-                1px 1px 0 #87a6b1ff
-              `,
+              color: "primary.main",
               mb: 4,
               textAlign: "left",
             }}
@@ -123,7 +116,9 @@ export default function AboutMe() {
                 fontSize: "1.1rem",
                 lineHeight: 1.8,
                 textAlign: "justify",
+                color: "secondary.main",
                 mb: p < 6 ? 3 : 0,
+                pl: 1,
               }}
               dangerouslySetInnerHTML={{ __html: t(`about_p${p}`) }}
             />

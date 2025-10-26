@@ -56,7 +56,6 @@ export default function Experience() {
         flexDirection: "column",
         alignItems: "flex-start",
         justifyContent: "flex-start",
-        background: "linear-gradient(135deg, #c99073ff 30%, #50899cff 100%, #c99073ff 40%)",
         overflow: "hidden",
         py: 25,
         px: 25,
@@ -74,13 +73,7 @@ export default function Experience() {
             fontFamily: "Montserrat, sans-serif",
             fontWeight: 700,
             fontSize: { xs: "3rem", sm: "4rem", md: "6rem" },
-            color: "#245F73",
-            textShadow: `
-              -1px -1px 0 #87a6b1ff,
-              1px -1px 0 #87a6b1ff,
-              -1px 1px 0 #87a6b1ff,
-              1px 1px 0 #87a6b1ff
-            `,
+            color: "primary.main",
             mb: 3,
           }}
         >
@@ -145,7 +138,7 @@ export default function Experience() {
                       p: 2,
                       backgroundColor: "#F2F0EF",
                       borderRadius: 2,
-                      color: "#245F73",
+                      color: "secondary.main",
                       fontFamily: "Montserrat, sans-serif",
                       boxShadow: "0 10px 30px rgba(0,0,0,0.18)",
                       textAlign: "center",

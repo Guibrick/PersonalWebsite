@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { createTheme, ThemeProvider } from '@mui/material';
+import { Box, createTheme, ThemeProvider } from '@mui/material';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -8,6 +8,7 @@ import Projects from './pages/Projects';
 import Contact from './pages/Contact';
 import Footer from './components/Footer';
 import { LanguageProvider } from './contexts/LanguageContext';
+import backgroundImage from './assets/geometric_background.jpg';
 
 function App() {
   const theme = createTheme({
@@ -15,20 +16,11 @@ function App() {
       fontFamily: 'Montserrat, Arial, sans-serif',
     },
     palette: {
-      mode: 'light',
       primary: {
         main: '#6A89A7',
       },
       secondary: {
         main: '#384959',
-      },
-      background: {
-        default: '#88BDF2',
-        paper: '#BBBDBC',
-      },
-      text: {
-        primary: '#384959',
-        secondary: '#384959',
       },
     },
   });
@@ -36,17 +28,28 @@ function App() {
   return (
     <LanguageProvider>
       <ThemeProvider theme={theme}>
-        <Router>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/experience" element={<Experience />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-          <Footer />
-        </Router>
+        <Box
+          sx={{
+            minHeight: '100vh',
+            backgroundImage: `url(${backgroundImage})`,
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            backgroundAttachment: 'fixed',
+            backgroundPosition: 'center',
+          }}
+        >
+          <Router>
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/experience" element={<Experience />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/contact" element={<Contact />} />
+            </Routes>
+            <Footer />
+          </Router>
+        </Box>
       </ThemeProvider>
     </LanguageProvider>
   );
