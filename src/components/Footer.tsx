@@ -1,6 +1,5 @@
-import { Box, IconButton, Typography } from '@mui/material';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import { Box, Typography } from '@mui/material';
+
 
 export default function Footer() {
   return (
@@ -25,24 +24,6 @@ export default function Footer() {
       <Typography variant="body2" sx={{ color: '#F2F0EF' }}>
         © {new Date().getFullYear()} Guido Bertaina
       </Typography>
-      <IconButton
-        aria-label="GitHub"
-        component="a"
-        href="https://github.com/guibrick"
-        target="_blank"
-        sx={{ color: '#F2F0EF' }}
-      >
-        <GitHubIcon />
-      </IconButton>
-      <IconButton
-        aria-label="LinkedIn"
-        component="a"
-        href="https://www.linkedin.com/in/guido-bertaina/"
-        target="_blank"
-        sx={{ color: '#F2F0EF' }}
-      >
-        <LinkedInIcon />
-      </IconButton>
     </Box>
   );
 }
