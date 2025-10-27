@@ -107,7 +107,7 @@ export default function AboutMe() {
             {t("about_title")}
           </Typography>
 
-          {[1, 2, 3, 4, 5, 6].map((p) => (
+          {[1, 2, 3, 4, 5].map((p) => (
             <Typography
               key={p}
               variant="body1"
