@@ -18,24 +18,28 @@ export default function AboutMe() {
   return (
     <Box
       sx={{
-        height: "100vh",
+        minHeight: "100vh",
         display: "flex",
+        flexDirection: { xs: "column", md: "row" },
         alignItems: "center",
-        justifyContent: "space-between",
+        justifyContent: "center",
         color: "#245F73",
-        px: { xs: 4, sm: 8, md: 10 },
+        px: { xs: 3, sm: 6, md: 10 },
+        py: { xs: 6, md: 0 },
+        gap: { xs: 6, md: 10 },
         overflow: "hidden",
+        flexWrap: "wrap",
       }}
     >
       <Box
         sx={{
           flex: 1,
-          maxWidth: "35%",
           display: "flex",
           flexDirection: "column",
+          alignItems: "center",
           justifyContent: "center",
-          height: "80vh",
-          gap: isSmall ? 2 : 4,
+          gap: isSmall ? 2 : 3,
+          maxWidth: { xs: "100%", md: "40%" },
         }}
       >
         {[0, 2, 4].map((i) => (
@@ -43,8 +47,9 @@ export default function AboutMe() {
             key={i}
             sx={{
               display: "flex",
-              justifyContent: i % 4 === 0 ? "flex-start" : "flex-end",
+              justifyContent: "center",
               gap: isSmall ? 2 : 3,
+              flexWrap: "wrap",
             }}
           >
             <motion.img
@@ -53,8 +58,8 @@ export default function AboutMe() {
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
               style={{
-                width: "220px",
-                height: "220px",
+                width: isSmall ? "160px" : "200px",
+                height: isSmall ? "160px" : "200px",
                 borderRadius: "16px",
                 objectFit: "cover",
                 boxShadow: "0 6px 15px rgba(0,0,0,0.2)",
@@ -66,8 +71,8 @@ export default function AboutMe() {
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
               style={{
-                width: "220px",
-                height: "220px",
+                width: isSmall ? "160px" : "200px",
+                height: isSmall ? "160px" : "200px",
                 borderRadius: "16px",
                 objectFit: "cover",
                 boxShadow: "0 6px 15px rgba(0,0,0,0.2)",
@@ -80,12 +85,10 @@ export default function AboutMe() {
       <Box
         sx={{
           flex: 1,
-          maxWidth: "60%",
-          pl: { md: 8 },
+          maxWidth: { xs: "100%", md: "55%" },
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          height: "80vh",
         }}
       >
         <motion.div
@@ -98,10 +101,10 @@ export default function AboutMe() {
             sx={{
               fontFamily: "Montserrat, sans-serif",
               fontWeight: 700,
-              fontSize: { xs: "3rem", sm: "4rem", md: "5rem" },
+              fontSize: { xs: "2.5rem", sm: "3.5rem", md: "5rem" },
               color: "primary.main",
               mb: 4,
-              textAlign: "left",
+              textAlign: { xs: "center", md: "left" },
             }}
           >
             {t("about_title")}
@@ -113,12 +116,12 @@ export default function AboutMe() {
               variant="body1"
               sx={{
                 fontFamily: "Montserrat, sans-serif",
-                fontSize: "1.1rem",
+                fontSize: { xs: "1rem", sm: "1.1rem" },
                 lineHeight: 1.8,
                 textAlign: "justify",
                 color: "secondary.main",
                 mb: p < 6 ? 3 : 0,
-                pl: 1,
+                px: { xs: 1, md: 0 },
               }}
               dangerouslySetInnerHTML={{ __html: t(`about_p${p}`) }}
             />
